@@ -1,0 +1,26 @@
+<configuration>
+    <springProperty scope="context" name="application_name" source="spring.application.name"/>
+    <springProperty scope="context" name="application_version" source="spring.application.version"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ALL</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - ${HOSTNAME}:${application_name}:${application_version} %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Most message we only want to WARN and below -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- Most message we want TRACE for com.aotscc -->
+    <logger name="com.aotscc" additivity="false" level="TRACE">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+</configuration>

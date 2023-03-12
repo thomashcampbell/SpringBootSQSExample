@@ -1,0 +1,9 @@
+###
+POST http://localhost:8080/produce/message
+Content-Type: application/json
+
+{
+  "id": 999,
+  "name": "bob",
+  "rollNumber": "yes"
+}
